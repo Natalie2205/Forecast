@@ -1,0 +1,54 @@
+.weather-card {
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    max-width: 360px;
+    margin: 20px auto;
+    text-align: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: white;
+    opacity: 70%;
+    transition: background 0.5s ease;
+   
+}
+
+
+.weather-card.bg-clear {
+    background: linear-gradient(135deg, #eccc68, #2980b9);
+}
+
+
+.weather-card.bg-clouds {
+    background: linear-gradient(135deg, #718093, #487eb0);
+}
+
+
+.weather-card.bg-rain {
+    background: linear-gradient(135deg, #2f3640, #192a56);
+}
+
+
+.weather-card.bg-thunder {
+    background: linear-gradient(135deg, #4834d4, #130f40);
+}
+
+
+.weather-card.bg-snow {
+    background: linear-gradient(135deg, #dff9fb, #c7ecee);
+    color: #2f3640;
+    
+}
+
+.weather-card.bg-snow .weather-time {
+    color: #718093;
+}
+
+
+.weather-card.bg-mist {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+}
+
+
+.weather-card.bg-default {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
