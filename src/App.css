@@ -190,3 +190,9 @@ body {
   background: url(./assets/clouds_bg.webp) no-repeat;
   background-size: cover;
 }
+
+.container {
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+}

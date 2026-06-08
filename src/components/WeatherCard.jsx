@@ -46,12 +46,13 @@ function WeatherCard({ weather }) {
             <div className="weather-main-info">
               <img
                 className="weather-icon"
-                src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}                
                 alt={weather.weather[0].description}
               />
+              <h1 className="weather-temp">{Math.round(weather.main.temp)}°C</h1>
             </div>
 
-            <h1 className="weather-temp">{Math.round(weather.main.temp)}°C</h1>
+            
             <p className="weather-feels">
               Відчувається як: {Math.round(weather.main.feels_like)}°C
             </p>
@@ -65,7 +66,7 @@ function WeatherCard({ weather }) {
                 💨 Вітер: {weather.wind.speed} м/с
               </div>
               <div className="detail-item">
-                🧭 Атмосферний тиск{" "}
+                🧭 Атмосферний тиск: {" "}
                 {Math.round(weather.main.pressure * 0.750062)} мм рт. ст.
               </div>
               <div className="detail-item">
