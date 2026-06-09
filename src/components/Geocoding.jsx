@@ -1,16 +1,20 @@
 import { useEffect } from "react";
+import { useWeather } from "./WeatherContext";
 
-function Geocoding({ cityName, apiKey, onCoordsLoaded, onError, onLoading }) {
+
+function Geocoding() {
+  const { searchCity, API_KEY, setCoords, setError, setLoading } = useWeather();
+
   useEffect(() => {
-    if (!cityName) return;
+    if (!searchCity) return;
 
     async function getCoordinates() {
       try {
-        onLoading(true);
-        onError(null);
-        onCoordsLoaded(null); // Скидаємо попередні координати
+        setLoading(true);
+        setError(null);
+        setCoords(null); 
 
-        const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(cityName)}&limit=5&appid=${apiKey}`;
+        const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(searchCity)}&limit=5&appid=${API_KEY}`;
         const geoResponse = await fetch(geoUrl);
         const geoData = await geoResponse.json();
 
@@ -18,17 +22,17 @@ function Geocoding({ cityName, apiKey, onCoordsLoaded, onError, onLoading }) {
           throw new Error("Місто не знайдено");
         }
 
-        const { lat, lon } = geoData[0];
-        onCoordsLoaded({ lat, lon });
+        const { lat, lon, local_names, name } = geoData[0];
+        const ukrainianName = local_names && local_names.uk ? local_names.uk : name;
+        setCoords({ lat, lon, customName: ukrainianName });
       } catch (err) {
-        onError(err.message);
-      } finally {
-        onLoading(false);
+        setError(err.message);
+        setLoading(false);
       }
     }
 
     getCoordinates();
-  }, [cityName, apiKey]);
+  }, [searchCity, API_KEY]);
 
   return null;
 }

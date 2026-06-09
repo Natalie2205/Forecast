@@ -1,35 +1,39 @@
 import { useEffect } from "react";
+import { useWeather } from "./WeatherContext";
 
-function CurrentWeather({ coords, apiKey, onDataLoaded, onError, onLoading }) {
+
+function CurrentWeather() {
+  const { coords, API_KEY, setWeatherData, setError, setLoading } =
+    useWeather();
+
   useEffect(() => {
     if (!coords) return;
 
     async function getWeatherData() {
       try {
-        onLoading(true);
-        onError(null);
-
-        const { lat, lon } = coords;
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=uk`; 
+        setLoading(true);
+        const { lat, lon, customName } = coords;
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=uk`; 
         const weatherResponse = await fetch(weatherUrl);
 
         if (!weatherResponse.ok) {
-          throw new Error("Не вдалося завантажити погоду");
+          throw new Error("Не вдалося завантажити поточну погоду");
         }
 
-        const weatherData = await weatherResponse.json();
-        onDataLoaded(weatherData); 
+        const data = await weatherResponse.json();
+        setWeatherData({ ...data, name: customName });
       } catch (err) {
-        onError(err.message);
+        setError(err.message);
       } finally {
-        onLoading(false);
+        setLoading(false);
       }
     }
 
     getWeatherData();
-  }, [coords, apiKey]);
+  }, [coords, API_KEY]);
 
   return null;
 }
 
 export default CurrentWeather;
+

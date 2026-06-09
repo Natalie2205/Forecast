@@ -1,0 +1,258 @@
+.forecast-section {
+    width: 100%;
+    height: 100%;
+    /* Займає всю висоту, яку дає батьківський контейнер */
+    display: flex;
+    flex-direction: column;
+    font-family: "Iosevka Charon", monospace;
+    color: white;
+    border-radius: 25px;
+    /* Точно як у .weather-card */
+    padding: 20px;
+    /* Точно як у .weather-card */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    /* Точно як у .weather-card */
+    box-sizing: border-box;
+    opacity: 80%;
+    transition: background 0.5s ease;
+}
+
+/* Колірні градієнти */
+.forecast-section.bg-clear {
+    background: linear-gradient(135deg, #eccc68, #2980b9);
+}
+
+.forecast-section.bg-clouds {
+    background: linear-gradient(135deg, #718093, #487eb0);
+}
+
+.forecast-section.bg-rain {
+    background: linear-gradient(135deg, #2f3640, #192a56);
+}
+
+.forecast-section.bg-thunder {
+    background: linear-gradient(135deg, #4834d4, #130f40);
+}
+
+.forecast-section.bg-mist {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+}
+
+.forecast-section.bg-default {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
+
+.forecast-section.bg-snow {
+    background: linear-gradient(135deg, #dff9fb, #c7ecee);
+    color: #2f3640;
+}
+
+/* Налаштування кнопок для теми снігу */
+.forecast-section.bg-snow .tab-btn {
+    background: rgba(0, 0, 0, 0.05);
+    color: #718093;
+}
+
+.forecast-section.bg-snow .tab-btn.active {
+    background: #2f3640;
+    color: white;
+}
+
+.forecast-section.bg-snow .forecast-day-content {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.forecast-main-title {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Панель вкладок дат */
+.forecast-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+    /* Захищає вкладки від стискання по вертикалі */
+}
+
+.forecast-tabs::-webkit-scrollbar {
+    height: 3px;
+}
+
+.tab-btn {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.tab-btn.active {
+    background: white;
+    color: #222;
+    font-weight: bold;
+}
+
+.tab-btn:hover {
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Стрічка часу */
+.forecast-day-content {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    border-radius: 18px;
+    flex-grow: 1;
+    /* Рівномірно розтягує цей блок до самого низу картки */
+    display: flex;
+    align-items: center;
+    /* Центрує стрічку годин по вертикалі */
+    overflow: hidden;
+}
+
+.forecast-hours-timeline {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+.forecast-hours-timeline::-webkit-scrollbar {
+    height: 4px;
+}
+
+.forecast-hours-timeline::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+/* Картки часу */
+.forecast-hour-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 95px;
+    text-align: center;
+    height: 175px;
+    /* Фіксована висота внутрішніх мікрокарток */
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 8px 4px;
+    flex-shrink: 0;
+}
+
+.hour-time {
+    font-size: 13px;
+    /* ЗБІЛЬШЕНО ШРИФТ */
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.hour-icon {
+    width: 48px;
+    /* Збільшено іконку */
+    height: 48px;
+}
+
+.hour-temp {
+    font-size: 17px;
+    /* ЗБІЛЬШЕНО ШРИФТ ТЕМПЕРАТУРИ */
+    font-weight: bold;
+}
+
+.hour-meta-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    margin: 4px 0;
+    font-size: 12px;
+    /* ЗБІЛЬШЕНО ШРИФТ МЕТАДАННИХ */
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+.hour-wind,
+.hour-humidity {
+    white-space: nowrap;
+}
+
+.hour-desc {
+    font-size: 13px;
+    opacity: 0.7;
+    max-width: 95px;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.2;
+
+    /* Обмежуємо текст РІВНО ДВОМА рядками, щоб він не розпирав картку донизу */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    /* Захист від вилізання тексту */
+
+    height: 32px;
+    /* Фіксована висота текстового блоку (13px * 1.2 * 2 рядки ≈ 31-32px) */
+    display: flex;
+    align-items: center;
+    /* Центрує короткий текст по вертикалі всередині своєї зони */
+    justify-content: center;
+}
+
+
+/* Складна інтеграція каскаду для сніжної теми */
+.weather-card.bg-snow~.layout-forecast-panel .forecast-section {
+    color: #2f3640;
+}
+
+.weather-card.bg-snow~.layout-forecast-panel .tab-btn {
+    background: rgba(0, 0, 0, 0.05);
+    color: #718093;
+}
+
+.weather-card.bg-snow~.layout-forecast-panel .tab-btn.active {
+    background: #2f3640;
+    color: white;
+}
+
+.weather-card.bg-snow~.layout-forecast-panel .forecast-day-content {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.forecast-hours-timeline.fade-in {
+    animation: fadeInEffect 0.4s ease-out forwards;
+}
+
+/* ОПИС КЛЮЧОВИХ КАДРІВ АНІМАЦІЇ */
+@keyframes fadeInEffect {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+        /* Легкий ефект випливання знизу */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

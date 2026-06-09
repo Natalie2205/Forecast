@@ -1,30 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useWeather } from "./WeatherContext";
 import './WeatherInput.css'
 
-function WeatherInput({ onSearch }) {
+
+
+function WeatherInput() {
+  const {
+    setSearchCity,
+    searchCity,
+    weatherData,
+    showForecast,
+    setShowForecast,
+    handleBackToCapitals,
+  } = useWeather();
   const [city, setCity] = useState("");
+
+  
+  useEffect(() => {
+    if (!searchCity) setCity("");
+  }, [searchCity]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!city.trim()) return;
-    onSearch(city);
+    setSearchCity(city);
   };
 
   return (
-    <form className="weather-form"
-      onSubmit={handleSubmit}      
-    >
-      <input className="weather-input"
+    <form className="weather-form" onSubmit={handleSubmit}>
+      <input
+        className="weather-input"
         type="text"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        placeholder="Введіть місто (напр. Львів)"        
+        placeholder="Введіть місто (напр. Львів)"
       />
-      <button className="weather-btn"
-        type="submit"        
-      >
+
+      <button className="weather-btn" type="submit">
         Пошук
       </button>
+
+      {/* Кнопки показуються поруч з інпутом ТІЛЬКИ якщо дані про погоду в місті завантажені */}
+      {searchCity && weatherData && (
+        <>
+          <button
+            type="button"
+            className={`forecast-toggle-btn ${showForecast ? "active" : ""}`}
+            onClick={() => setShowForecast(!showForecast)}
+          >
+            {showForecast ? "Сховати прогноз" : "Прогноз на 5 днів"}
+          </button>
+
+          <button
+            type="button"
+            className="weather-btn"
+            onClick={handleBackToCapitals}
+          >
+            ← Назад до столиць
+          </button>
+        </>
+      )}
     </form>
   );
 }

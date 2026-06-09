@@ -1,0 +1,40 @@
+.weather-result-layout {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: stretch;
+    /* Розтягує КЛІТИНКИ колонок на однакову висоту */
+    max-width: 960px;
+    margin: 30px auto 0 auto;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.layout-main-card {
+    flex: 0 1 300px;    
+    width: 100%;
+    display: flex;
+}
+
+.layout-forecast-panel {
+    flex: 1 1 500px;
+    min-width: 320px;
+    display: flex;
+}
+
+
+@media (max-width: 880px) {
+    .weather-result-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .layout-main-card,
+    .layout-forecast-panel {
+        width: 100%;
+        max-width: 360px;
+        
+    }
+}

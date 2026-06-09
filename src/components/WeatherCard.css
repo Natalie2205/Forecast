@@ -3,15 +3,24 @@
     border-radius: 25px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     max-width: 360px;
-    margin: 0 auto;
+
+    /* ЗМІНЕНО ДЛЯ ОДНАКОВОЇ ВИСОТИ */
+    height: 100%;
+    /* Тепер картка розтягнеться на повну висоту колонки */
+    margin: 0;
+    /* Прибираємо auto по вертикалі, щоб не було стрибків центрирования */
+    width: 100%;
+
     text-align: center;
-    font-family: system-ui, -apple-system, sans-serif;
     color: white;
     opacity: 80%;
     transition: background 0.5s ease;
-    font-family: "Iosevka Charon",
-        monospace;
-   
+    font-family: "Iosevka Charon", monospace;
+
+    /* Також робимо її flex, щоб внутрішні деталі гарно розподілялися */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
