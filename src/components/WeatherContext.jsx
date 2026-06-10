@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from "react";
 
 const WeatherContext = createContext();
 
-function WeatherProvider({ children }) {
+export function WeatherProvider({ children }) {
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
   const [searchCity, setSearchCity] = useState("");
@@ -48,5 +48,5 @@ function WeatherProvider({ children }) {
   );
 }
 
-export default WeatherProvider;
+// export default WeatherProvider;
 export const useWeather = () => useContext(WeatherContext);

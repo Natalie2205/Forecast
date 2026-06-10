@@ -24,6 +24,7 @@ function WeatherInput() {
     e.preventDefault();
     if (!city.trim()) return;
     setSearchCity(city);
+    setCity('');
   };
 
   return (

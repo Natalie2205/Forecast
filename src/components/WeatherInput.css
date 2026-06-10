@@ -8,8 +8,7 @@
     font-family: "Iosevka Charon", monospace;
 }
 
-.weather-input {
-    
+.weather-input {    
     flex: 1;
     min-width: 200px;
     padding: 10px 15px;
@@ -30,9 +29,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    white-space: nowrap;
-    
-    
+    white-space: nowrap; 
 }
 
 .forecast-toggle-btn.active {

@@ -31,8 +31,7 @@
 #sun {
     margin-left: -10px;
     margin-top: 6px;
-    opacity: 1;
-    /* Змінено з 0 на 1, щоб сонце було видно */
+    opacity: 1;    
     width: 60px;
     height: 60px;
     position: absolute;

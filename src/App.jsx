@@ -1,40 +1,16 @@
-import WeatherInput from './components/WeatherInput'
-import WeatherCard from './components/WeatherCard'
-import Preloader from './components/Preloader'
-import PreviewWeatherList from './components/PreviewWeatherList'
-import Geocoding from './components/Geocoding'
-import CurrentWeather from './components/CurrentWeather'
-import WeatherProvider, { useWeather } from './components/WeatherContext'
-import WeatherForecast from './components/WeatherForecast'
-import WeatherSearchResult from './components/WeatherSearchResult';
 
-import './App.css'
-
-function WeatherApp() {
-  const { searchCity, API_KEY } = useWeather();
-
-  return (
-    <div className="container">
-      
-      <WeatherInput />
-      
-      <Geocoding />
-      <CurrentWeather />
-      <WeatherForecast />
-      
-      {!searchCity && <PreviewWeatherList apiKey={API_KEY} />}
-
-      <WeatherSearchResult />
-    </div>
-  );
-}
+import { WeatherProvider } from "./components/WeatherContext";
+import Home from "./pages/Home";
+import "./App.css";
 
 function App() {
   return (
     <WeatherProvider>
-      <WeatherApp />
+      <Home />
     </WeatherProvider>
   );
 }
 
-export default App
+export default App;
+
+
