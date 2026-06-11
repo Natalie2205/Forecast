@@ -1,14 +1,16 @@
 .weather-form {
-    padding-top: 100px;
+    padding-top: 40px;
     display: flex;
     gap: 10px;
     margin: 20px auto;
     align-items: center;
     flex-wrap: wrap;
     font-family: "Iosevka Charon", monospace;
+    width: 100%;
+    justify-content: center;
 }
 
-.weather-input {    
+.weather-input {
     flex: 1;
     min-width: 200px;
     padding: 10px 15px;
@@ -29,14 +31,37 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .forecast-toggle-btn.active {
-    background-color: #370947;   
+    background-color: #370947;
 }
 
 .weather-btn:hover,
 .forecast-toggle-btn:hover {
     filter: brightness(90%);
+}
+
+@media (max-width: 450px) {
+    .weather-form {
+        flex-direction: column;
+        align-items: stretch;
+        /* Розтягує інпут та кнопки на всю ширину */
+        padding: 0 15px;
+    }
+
+    .weather-input {
+        width: 100%;
+        min-width: 100%;
+        /* Прибираємо жорстке обмеження */
+    }
+
+    .weather-btn,
+    .forecast-toggle-btn {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        /* Дозволяємо тексту кнопок переноситись, якщо назва довга */
+    }
 }

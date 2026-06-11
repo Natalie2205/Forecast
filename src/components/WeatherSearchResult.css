@@ -11,29 +11,43 @@
 }
 
 .layout-main-card {
-    flex: 0 1 300px;    
+    /* flex: 0 0 300px;     */
     width: 100%;
+    max-width: 300px;
     display: flex;
 }
 
 .layout-forecast-panel {
-    flex: 1 1 500px;
-    min-width: 320px;
+    /* flex: 1 1 500px; */
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 260px;
+    max-width: 520px;
     display: flex;
 }
 
 
 @media (max-width: 880px) {
     .weather-result-layout {
-        flex-direction: column;
+        flex-wrap: wrap;
         align-items: center;
         gap: 20px;
+        padding: 0 10px;
     }
 
     .layout-main-card,
     .layout-forecast-panel {
         width: 100%;
-        max-width: 360px;
-        
+        /* flex-basis: auto;        */
+    }
+
+    .layout-forecast-panel {
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 500px) {
+    .layout-forecast-panel {
+        max-width: 300px;
     }
 }

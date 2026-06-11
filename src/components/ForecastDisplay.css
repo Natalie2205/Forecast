@@ -116,6 +116,7 @@
     display: flex;
     align-items: center;    
     overflow: hidden;
+    width: 100%;
 }
 
 .forecast-hours-timeline {
@@ -234,5 +235,36 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 400px) {
+
+    /* Зменшуємо відступи картки, щоб лишити більше місця контенту */
+    .forecast-section {
+        padding: 15px 10px;
+    }
+
+    /* Робимо внутрішній блок адаптивнішим */
+    .forecast-day-content {
+        padding: 10px 5px;
+    }
+
+    /* Зменшуємо шрифт табів, щоб більше днів вміщалося на екрані */
+    .tab-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    /* Трохи оптимізуємо відстань між годинами */
+    .forecast-hours-timeline {
+        gap: 10px;
+    }
+
+    /* Робимо годинні картки компактнішими */
+    .forecast-hour-card {
+        min-width: 85px;
+        height: 165px;
     }
 }

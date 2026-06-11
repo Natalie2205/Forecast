@@ -67,6 +67,13 @@
     padding: 32px 20px 24px;
     gap: 18px;
   }
+
+  @media (max-width: 600px) {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden;
+    /* Блокуємо будь-яке горизонтальне розширення */
+  }
 }
 
 #next-steps {
@@ -187,12 +194,19 @@
 }
 
 body {
-  background: url(./assets/clouds_bg.webp) no-repeat;
+  background: url(./assets/clouds_bg.webp) no-repeat center center;
   background-size: cover;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   padding: 20px;
   margin: 0 auto;
+
+  @media (max-width: 500px) { 
+    padding: 10px;  
 }
+}
+

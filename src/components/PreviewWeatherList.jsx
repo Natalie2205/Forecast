@@ -4,11 +4,12 @@ import Preloader from "./Preloader";
 import "./PreviewWeatherList.css";
 
 
-const CAPITAL_CITIES = [  
+const CAPITAL_CITIES = [
   { name: "Київ", lat: 50.4501, lon: 30.5234 },
   { name: "Лондон", lat: 51.5074, lon: -0.1278 },
   { name: "Париж", lat: 48.8566, lon: 2.3522 },
   { name: "Токіо", lat: 35.6762, lon: 139.6503 },
+  { name: "Мадрид", lat: 40.4168, lon: -3.7038 },
   { name: "Бангкок", lat: 13.7563, lon: 100.5018 },
   { name: "Сеул", lat: 37.5665, lon: 126.978 },
   { name: "Вашингтон", lat: 38.9072, lon: -77.0369 },
@@ -22,7 +23,7 @@ const CAPITAL_CITIES = [
   { name: "Веллінгтон", lat: -41.2865, lon: 174.7762 },
 ];
 
-const getRandomCapitals = (count = 8) => {
+const getRandomCapitals = (count = 6) => {
   return [...CAPITAL_CITIES].sort(() => 0.5 - Math.random()).slice(0, count);
 };
 
@@ -34,7 +35,7 @@ function PreviewWeatherList({ apiKey }) {
     async function fetchCapitals() {
       try {
         setLoadingCapitals(true);
-        const selected = getRandomCapitals(8);
+        const selected = getRandomCapitals(6);
 
         // Паралельні запити погоди
           const promises = selected.map(async (city) => {
