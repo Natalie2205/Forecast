@@ -1,12 +1,20 @@
 import CityTime from "./CityTime";
+import { useWeather } from "./WeatherContext";
 import "./WeatherCard.css";
 
 
+
 function WeatherCard({ weather }) {
-    if (!weather) return null;   
-     
+  const { favorites, toggleFavorite } = useWeather();
   const { liveTime, formatStaticTime } = CityTime(weather.timezone);
-  
+
+  if (!weather) return null;
+
+  // Перевіряємо, чи поточне місто вже є в списку обраних
+  const isFavorite = favorites.some(
+    (fav) => fav.name.toLowerCase() === weather.name.toLowerCase(),
+  );
+
   const getWeatherClass = () => {
     if (!weather.weather || weather.weather.length === 0) return "bg-default";
 
@@ -34,51 +42,55 @@ function WeatherCard({ weather }) {
         return "bg-default";
     }
   };
-  
 
-        return (
-          <div className={`weather-card ${getWeatherClass()}`}>
-            <h2 className="weather-location">
-              {weather.name}, {weather.sys.country}
-            </h2>
-            <h3 className="weather-time">Місцевий час {liveTime}</h3>
+  return (
+    <div className={`weather-card ${getWeatherClass()}`}>
+      <button
+        type="button"
+        className={`favorite-btn ${isFavorite ? "active" : ""}`}
+        onClick={() => toggleFavorite(weather)}
+        title={isFavorite ? "Видалити з обраного" : "Додати до обраного"}
+      >
+        ★
+      </button>
+      <h2 className="weather-location">
+        {weather.name}, {weather.sys.country}
+      </h2>
+      <h3 className="weather-time">Місцевий час {liveTime}</h3>
 
-            <div className="weather-main-info">
-              <img
-                className="weather-icon"
-                src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}                
-                alt={weather.weather[0].description}
-              />
-              <h1 className="weather-temp">{Math.round(weather.main.temp)}°C</h1>
-            </div>
+      <div className="weather-main-info">
+        <img
+          className="weather-icon"
+          src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+          alt={weather.weather[0].description}
+        />
+        <h1 className="weather-temp">{Math.round(weather.main.temp)}°C</h1>
+      </div>
 
-            
-            <p className="weather-feels">
-              Відчувається як: {Math.round(weather.main.feels_like)}°C
-            </p>
-            <p className="weather-desc">{weather.weather[0].description}</p>
+      <p className="weather-feels">
+        Відчувається як: {Math.round(weather.main.feels_like)}°C
+      </p>
+      <p className="weather-desc">{weather.weather[0].description}</p>
 
-            <div className="weather-details">
-              <div className="detail-item">
-                💧 Вологість: {weather.main.humidity}%
-              </div>
-              <div className="detail-item">
-                💨 Вітер: {weather.wind.speed} м/с
-              </div>
-              <div className="detail-item">
-                🧭 Атмосферний тиск: {" "}
-                {Math.round(weather.main.pressure * 0.750062)} мм рт. ст.
-              </div>
-              <div className="detail-item">
-                🌅 Схід сонця о {formatStaticTime(weather.sys.sunrise)}
-              </div>
-              <div className="detail-item">
-                🌇 Захід сонця о {formatStaticTime(weather.sys.sunset)}
-              </div>
-            </div>
-          </div>
-        );
-    }
+      <div className="weather-details">
+        <div className="detail-item">
+          💧 Вологість: {weather.main.humidity}%
+        </div>
+        <div className="detail-item">💨 Вітер: {weather.wind.speed} м/с</div>
+        <div className="detail-item">
+          🧭 Атмосферний тиск: {Math.round(weather.main.pressure * 0.750062)} мм
+          рт. ст.
+        </div>
+        <div className="detail-item">
+          🌅 Схід сонця о {formatStaticTime(weather.sys.sunrise)}
+        </div>
+        <div className="detail-item">
+          🌇 Захід сонця о {formatStaticTime(weather.sys.sunset)}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 
 export default WeatherCard;

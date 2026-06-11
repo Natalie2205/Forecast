@@ -51,3 +51,9 @@
         max-width: 300px;
     }
 }
+
+.error-msg {
+    color: #370947;
+    font-size: 20px;
+    font-weight: 500;
+}

@@ -13,7 +13,7 @@
     font-family: "Iosevka Charon", monospace;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
+    position: relative;
 }
 
 
@@ -78,4 +78,37 @@
         gap: 10px;
         /* Зменшуємо відстань між іконкою та градусами */
     }
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    z-index: 10;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.favorite-btn.active {
+    color: #ffc107 !important;
+    /* Жовтий колір для обраного */
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
+}
+
+/* Адаптація зірочки під світлу сніжну тему */
+.weather-card.bg-snow .favorite-btn {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.weather-card.bg-snow .favorite-btn:hover {
+    color: rgba(0, 0, 0, 0.6);
 }
