@@ -10,7 +10,7 @@ function Home() {
   const { searchCity, API_KEY } = useWeather();
 
   return (
-    <div className="container">
+    <>
       
           <WeatherInput />
           
@@ -23,7 +23,7 @@ function Home() {
 
       
       <WeatherSearchResult />
-    </div>
+    </>
   );
 }
 
