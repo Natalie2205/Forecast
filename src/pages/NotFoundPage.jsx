@@ -1,26 +1,14 @@
-import React, { useState } from "react";
+import { Link } from "react-router";
 import "./NotFoundPage.css";
 
+
 const NotFoundPage = () => {
-  const [searchCity, setSearchCity] = useState("");
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchCity.trim()) {
-      
-      window.location.href = `/weather?city=${encodeURIComponent(searchCity)}`;
-    }
-  };
-
+  
   return (
-    <div className="container">
+    <div className="error-container">
       {/* Інтерактивна SVG-хмаринка з табличкою */}
       <div className="cloudWrapper">
-        <svg
-          className="cloudSvg"
-          viewBox="0 0 200 150"
-          xmlns="http://w3.org"
-        >
+        <svg className="cloudSvg" viewBox="0 0 200 150" xmlns="http://w3.org">
           {/* Тіло хмаринки */}
           <path
             d="M50 130 A 30 30 0 0 1 40 70 A 40 40 0 0 1 110 40 A 45 45 0 0 1 170 80 A 30 30 0 0 1 150 130 Z"
@@ -77,24 +65,10 @@ const NotFoundPage = () => {
         полетіла на південь разом із перелітними птахами.
       </p>
 
-      {/* Пошук міста прямо зі сторінки помилки */}
-      <form onSubmit={handleSearch} className="searchForm">
-        <input
-          type="text"
-          placeholder="Введіть ваше місто..."
-          value={searchCity}
-          onChange={(e) => setSearchCity(e.target.value)}
-          className="searchInput"
-        />
-        <button type="submit" className="searchButton">
-          Знайти погоду
-        </button>
-      </form>
-
       <div className="actions">
-        <a href="/" className="homeLink">
+        <Link to="/" className="homeLink">
           Повернутися до прогнозу
-        </a>
+        </Link>        
       </div>
     </div>
   );

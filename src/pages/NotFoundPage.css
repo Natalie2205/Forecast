@@ -1,13 +1,12 @@
-.container {
+.error-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(180deg, #f0fdf4 0%, #e0f2fe 100%);
-    
-    color: #1e293b;
-    padding: 20px;
+    background: linear-gradient(180deg, #93b2b6 0%, #e0f2fe 100%);
+    opacity: 80%;
+    color: #1e293b;    
     text-align: center;
 }
 
@@ -15,8 +14,7 @@
     width: 250px;
     height: 200px;
     margin-bottom: 20px;
-    animation: floatCloud 4s ease-in-out infinite;
-    
+    animation: floatCloud 4s ease-in-out infinite;    
 }
 
 .cloudSvg {
@@ -39,42 +37,6 @@
     margin-bottom: 30px;
 }
 
-.searchForm {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    width: 100%;
-    max-width: 400px;
-}
-
-.searchInput {
-    flex: 1;
-    padding: 12px 20px;
-    border: 2px solid #cbd5e1;
-    border-radius: 25px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.searchInput:focus {
-    border-color: #38bdf8;
-}
-
-.searchButton {
-    background-color: #38bdf8;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.searchButton:hover {
-    background-color: #0ea5e9;
-}
 
 .homeLink {
     color: #0284c7;
@@ -101,5 +63,47 @@
 
     100% {
         transform: translateY(0px) rotate(0deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .error-container {        
+        min-height: calc(100vh - 350px);        
+    }
+
+    .title {
+        font-size: 1.6rem;        
+        padding: 0 10px;
+    }
+
+    .description {
+        font-size: 0.95rem;       
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .searchForm {
+        flex-direction: column;        
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .searchInput {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 20px;
+    }
+
+    .searchButton {
+        width: 100%;
+        padding: 14px 24px;
+    }
+
+    .cloudWrapper {
+        width: 200px;
+        height: 180px;
     }
 }

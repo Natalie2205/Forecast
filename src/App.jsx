@@ -8,6 +8,8 @@ import "./App.css";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./layout/Footer";
 import Interesting from "./pages/Interesting";
+import NotFoundPage from "./pages/NotFoundPage";
+
 
 
 function App() {
@@ -20,13 +22,13 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/selected" element={<Selected />}></Route>
           <Route path="/interesting" element={<Interesting />}></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </div>
 
       <ScrollToTop />
 
-      <Footer />     
-      
+      <Footer />
     </WeatherProvider>
   );
 }
