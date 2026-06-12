@@ -19,7 +19,7 @@ function App() {
 
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/Forecast" element={<Home />}></Route>
           <Route path="/selected" element={<Selected />}></Route>
           <Route path="/interesting" element={<Interesting />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
