@@ -41,7 +41,7 @@ const Header = () => {
           
           <nav className={`app-nav ${isOpen ? "active" : ""}`}>
             <NavLink
-              to="/"
+              to="/Forecast"
               className={({ isActive }) =>
                 isActive ? "nav-item active" : "nav-item"
               }
