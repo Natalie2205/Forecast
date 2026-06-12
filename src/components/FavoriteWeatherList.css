@@ -6,6 +6,10 @@
     font-weight: 500;
 }
 
+.favorites-section {
+    padding: 30px 0;
+}
+
 .favorites-controls {
     text-align: center;
     margin-bottom: 30px;
@@ -30,8 +34,7 @@
     margin-bottom: 40px;        
 }
 
-.single-city-forecast-block {
-    /* width: 100%; */
+.single-city-forecast-block {    
     max-width: 960px;
     margin: 0 auto;    
 }
@@ -47,29 +50,24 @@
     box-sizing: border-box;
 }
 
-/* Окремий рядок для кожного міста (Поточна + Прогноз) */
+
 .fav-city-row {
     display: flex;
     gap: 24px;
     justify-content: center;
-    align-items: stretch;
-    /* Робить поточну погоду та прогноз однакової висоти */
+    align-items: stretch;    
     width: 100%;
     animation: slideDownEffect 0.4s ease-out forwards;
 }
 
-/* Ліва колонка: звужена поточна погода (точно як на головній сторінці) */
 .fav-layout-main-card {
-    /* flex: 0 1 300px; */
     flex-shrink: 1;
     max-width: 300px;
     width: 100%;
     display: flex;
 }
 
-/* Права колонка: розширений прогноз (точно як на головній сторінці) */
 .fav-layout-forecast-panel {
-    /* flex: 1 1 500px; */
     flex-grow: 1;
     flex-shrink: 1;
     max-width: 500px;
@@ -77,7 +75,6 @@
     display: flex;
 }
 
-/* Адаптація під мобільні пристрої (екрани менше 880px) */
 @media (max-width: 880px) {
     .fav-city-row {
         flex-direction: column;
@@ -88,12 +85,11 @@
     .fav-layout-main-card,
     .fav-layout-forecast-panel {
         width: 100%;
-        max-width: 360px;
-        /* На смартфонах блоки знову стають затишного мобільного розміру */
+        max-width: 360px;        
     }
 }
 
-/* Плавний ефект розгортання прогнозу при натисканні */
+
 @keyframes slideDownEffect {
     from {
         opacity: 0;

@@ -6,15 +6,10 @@ function Selected() {
   const navigate = useNavigate();
 
   return (
-    <>    
-        
-        <h1 className="selected-title">
-          Обрані міста
-        </h1>      
+    <>
+      <h1 className="selected-title">Обрані міста</h1>
 
-      {/* Наш новий список гріда */}
       <FavoriteWeatherList />
-      
     </>
   );
 }

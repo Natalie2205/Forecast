@@ -8,6 +8,7 @@
     width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
+    padding-bottom: 20px;
 }
 
 .layout-main-card {    
@@ -16,8 +17,7 @@
     display: flex;
 }
 
-.layout-forecast-panel {
-    /* flex: 1 1 500px; */
+.layout-forecast-panel {    
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 260px;
@@ -31,13 +31,12 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 20px;
-        padding: 0 10px;
+        padding: 20px 10px;
     }
 
     .layout-main-card,
     .layout-forecast-panel {
-        width: 100%;
-        /* flex-basis: auto;        */
+        width: 100%;        
     }
 
     .layout-forecast-panel {

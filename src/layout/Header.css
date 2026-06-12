@@ -1,5 +1,5 @@
 .app-header {
-    background-color: rgba(22, 186, 227, 0.421);
+    background-color: rgba(39, 192, 230, 0.515);
     padding: 15px 0;
     position: relative;
     z-index: 100;
@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    text-decoration: none;   
+    text-decoration: none;
 }
 
 .logo-text {
@@ -82,7 +82,7 @@
     transition: all 0.3s ease;
 }
 
-/* Анімація перетворення ліній бургера на хрестик "Х" при відкритті */
+
 .burger-btn.open .burger-line:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
 }
@@ -95,11 +95,10 @@
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* --- Адаптивні стилі для мобільних пристроїв та планшетів --- */
+
 @media (max-width: 768px) {
     .burger-btn {
         display: flex;
-        /* Показуємо кнопку бургера */
     }
 
     .app-nav {
@@ -107,22 +106,19 @@
         flex-direction: column;
         gap: 15px;
 
-        /* Випадаюче вертикальне меню під хедером */
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background-color: rgb(151, 226, 245);
-        /* Насиченіший колір фону для читабельності */
+        background-color: rgb(151, 226, 245);        
         padding: 20px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-        /* Ховаємо меню за замовчуванням через clip-path для плавної CSS-анімації */
+        
         clip-path: circle(0% at 100% 0%);
         transition: clip-path 0.4s ease-in-out;
     }
 
-    /* Стан, коли меню відкрите */
+    
     .app-nav.active {
         clip-path: circle(141.4% at 100% 0%);
     }

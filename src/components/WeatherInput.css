@@ -46,22 +46,19 @@
 @media (max-width: 450px) {
     .weather-form {
         flex-direction: column;
-        align-items: stretch;
-        /* Розтягує інпут та кнопки на всю ширину */
+        align-items: stretch;        
         padding: 0 15px;
     }
 
     .weather-input {
         width: 100%;
-        min-width: 100%;
-        /* Прибираємо жорстке обмеження */
+        min-width: 100%;        
     }
 
     .weather-btn,
     .forecast-toggle-btn {
         width: 100%;
         text-align: center;
-        white-space: normal;
-        /* Дозволяємо тексту кнопок переноситись, якщо назва довга */
+        white-space: normal;        
     }
 }

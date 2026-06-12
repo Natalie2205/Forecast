@@ -5,8 +5,7 @@
     justify-content: center;
     min-height: 100vh;
     background: linear-gradient(180deg, #f0fdf4 0%, #e0f2fe 100%);
-    /* ніжний градієнт */
-    /* font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; */
+    
     color: #1e293b;
     padding: 20px;
     text-align: center;
@@ -17,7 +16,7 @@
     height: 200px;
     margin-bottom: 20px;
     animation: floatCloud 4s ease-in-out infinite;
-    /* плавне погойдування */
+    
 }
 
 .cloudSvg {
@@ -90,7 +89,7 @@
     border-color: #0369a1;
 }
 
-/* Анімація польоту хмарки */
+
 @keyframes floatCloud {
     0% {
         transform: translateY(0px) rotate(0deg);
