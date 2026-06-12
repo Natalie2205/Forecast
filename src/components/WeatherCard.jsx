@@ -10,7 +10,7 @@ function WeatherCard({ weather }) {
 
   if (!weather) return null;
 
-  // Перевіряємо, чи поточне місто вже є в списку обраних
+  
   const isFavorite = favorites.some(
     (fav) => fav.name.toLowerCase() === weather.name.toLowerCase(),
   );

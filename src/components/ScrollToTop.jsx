@@ -4,7 +4,7 @@ import "./ScrollToTop.css";
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Відстежуємо скрол сторінки
+  
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -16,15 +16,15 @@ function ScrollToTop() {
 
     window.addEventListener("scroll", toggleVisibility);
 
-    // Очищаємо слухач подій при розмонтуванні компонента
+    
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  // Функція плавного підняття вгору
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Плавний скрол
+      behavior: "smooth", 
     });
   };
 

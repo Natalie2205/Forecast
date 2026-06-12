@@ -59,7 +59,7 @@ function FavoriteWeatherList() {
     try {
       setLoadingForecast(true);
 
-      // Створюємо масив промісів для всіх міст в обраному
+      
       const promises = favorites.map(async (city) => {
         const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric&lang=uk`;
         const res = await fetch(url);
@@ -70,7 +70,7 @@ function FavoriteWeatherList() {
 
       const results = await Promise.all(promises);
 
-      // Трансформуємо масив результатів в об'єкт вигляду: { "Київ": [...], "Львів": [...] }
+      
       const forecastObject = results.reduce((acc, current) => {
         acc[current.cityName] = current.list;
         return acc;
@@ -109,7 +109,7 @@ function FavoriteWeatherList() {
 
       {loadingForecast && <Preloader />}
 
-      {/* ДИНАМІЧНИЙ МАКЕТ З КЕРУВАННЯМ СІТКОЮ ТА РЯДКАМИ */}
+      
       {!loadingForecast && (
         <div
           className={
@@ -125,12 +125,12 @@ function FavoriteWeatherList() {
                 key={cityData.id}
                 className={hasForecast ? "fav-city-row" : "fav-grid-item"}
               >
-                {/* Поточна погода */}
+                
                 <div className={hasForecast ? "fav-layout-main-card" : ""}>
                   <WeatherCard weather={cityData} />
                 </div>
 
-                {/* Прогноз з'являється ПОРУЧ лише якщо активовано кнопку */}
+                
                 {hasForecast && (
                   <div className="fav-layout-forecast-panel">
                     <ForecastDisplay

@@ -3,12 +3,12 @@ import "./ForecastDisplay.css";
 
 
 function ForecastDisplay({ forecast }) {
-  // Реф для скидання горизонтального скролу годин на початок
+  
   const timelineRef = useRef(null);
 
   const groupByDay = (list) => {
     return list.reduce((acc, item) => {
-      // ВИПРАВЛЕНО: беремо лише перший елемент масиву (строку дати "YYYY-MM-DD")
+      
       const date = item.dt_txt.split(" ")[0]; 
       if (!acc[date]) acc[date] = [];
       acc[date].push(item);
@@ -21,14 +21,14 @@ function ForecastDisplay({ forecast }) {
 
   const [activeDate, setActiveDate] = useState(dates[0] || "");
 
-  // Скидаємо вкладку на перший день при зміні міста
+  
   useEffect(() => {
     if (dates.length > 0) {
       setActiveDate(dates[0]);
     }
   }, [forecast]);
 
-  // Ефект для скидання горизонтальної прокрутки при зміні дати
+  
   useEffect(() => {
     if (timelineRef.current) {
       timelineRef.current.scrollLeft = 0;
@@ -88,7 +88,7 @@ function ForecastDisplay({ forecast }) {
       </div>
 
       <div className="forecast-day-content">
-        {/* Додано ref для контролю прокрутки годин */}
+        
         <div
           className="forecast-hours-timeline fade-in"
           key={activeDate}

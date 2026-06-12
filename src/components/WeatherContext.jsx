@@ -13,17 +13,17 @@ export function WeatherProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // НОВЕ: Завантажуємо обрані міста з localStorage при старті
+  
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("meteo_favorites");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // НОВЕ: Стан для прогнозу на сторінці Selected
+  
   const [selectedForecast, setSelectedForecast] = useState({});
   const [showSelectedForecast, setShowSelectedForecast] = useState(false);
 
-  // Зберігаємо зміни в localStorage
+  
   useEffect(() => {
     localStorage.setItem("meteo_favorites", JSON.stringify(favorites));
   }, [favorites]);
@@ -37,7 +37,7 @@ export function WeatherProvider({ children }) {
     setError(null);
   };
 
-  // НОВЕ: Функція додавання/видалення
+ 
   const toggleFavorite = (cityObj) => {
     setFavorites((prev) => {
       const exists = prev.some(

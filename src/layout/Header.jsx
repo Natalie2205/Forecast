@@ -27,7 +27,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Кнопка бургера, видима лише на мобільних */}
+          
           <button 
             className={`burger-btn ${isOpen ? "open" : ""}`} 
             onClick={toggleMenu}
@@ -38,7 +38,7 @@ const Header = () => {
             <span className="burger-line"></span>
           </button>
 
-          {/* Навігація із динамічним класом active */}
+          
           <nav className={`app-nav ${isOpen ? "active" : ""}`}>
             <NavLink
               to="/"

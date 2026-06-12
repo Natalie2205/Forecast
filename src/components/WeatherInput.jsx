@@ -41,7 +41,7 @@ function WeatherInput() {
         Пошук
       </button>
 
-      {/* Кнопки показуються поруч з інпутом ТІЛЬКИ якщо дані про погоду в місті завантажені */}
+      
       {searchCity && weatherData && (
         <>
           <button

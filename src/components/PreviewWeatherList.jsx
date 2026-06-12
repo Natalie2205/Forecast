@@ -37,7 +37,7 @@ function PreviewWeatherList({ apiKey }) {
         setLoadingCapitals(true);
         const selected = getRandomCapitals(6);
 
-        // Паралельні запити погоди
+        
           const promises = selected.map(async (city) => {
              const { lat, lon, name } = city;
           const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=uk`;
