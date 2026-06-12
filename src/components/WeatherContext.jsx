@@ -20,7 +20,7 @@ export function WeatherProvider({ children }) {
   });
 
   // НОВЕ: Стан для прогнозу на сторінці Selected
-  const [selectedForecast, setSelectedForecast] = useState(null);
+  const [selectedForecast, setSelectedForecast] = useState({});
   const [showSelectedForecast, setShowSelectedForecast] = useState(false);
 
   // Зберігаємо зміни в localStorage

@@ -3,6 +3,7 @@ import { useWeather } from "../components/WeatherContext";
 import WeatherCard from "./WeatherCard";
 import Preloader from "./Preloader";
 import ForecastDisplay from "./ForecastDisplay";
+import './FavoriteWeatherList.css'
 
 function FavoriteWeatherList() {
   const {
@@ -12,9 +13,11 @@ function FavoriteWeatherList() {
     setSelectedForecast,
     showSelectedForecast,
     setShowSelectedForecast,
-  } = useWeather();
+    } = useWeather();
+    
   const [favoritesWeather, setFavoritesWeather] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingForecast, setLoadingForecast] = useState(false);
 
   useEffect(() => {
     if (favorites.length === 0) {
@@ -26,7 +29,7 @@ function FavoriteWeatherList() {
       try {
         setLoading(true);
         const promises = favorites.map(async (city) => {
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=uk`;
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric&lang=uk`;
           const res = await fetch(url);
           if (!res.ok) throw new Error();
           const data = await res.json();
@@ -45,8 +48,7 @@ function FavoriteWeatherList() {
     fetchFavorites();
   }, [favorites, API_KEY]);
 
-  // Запит прогнозу на 5 днів для першого міста в обраному (або можна розширити логіку)
-  const handleFetchForecast = async () => {
+  const handleFetchAllForecasts = async () => {
     if (favorites.length === 0) return;
 
     if (showSelectedForecast) {
@@ -55,56 +57,98 @@ function FavoriteWeatherList() {
     }
 
     try {
-      const { lat, lon } = favorites[0]; // Беремо перше місто для демонстрації
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=uk`;
-      const res = await fetch(url);
-      const data = await res.json();
-      setSelectedForecast(data.list);
+      setLoadingForecast(true);
+
+      // Створюємо масив промісів для всіх міст в обраному
+      const promises = favorites.map(async (city) => {
+        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric&lang=uk`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Помилка прогнозу для ${city.name}`);
+        const data = await res.json();
+        return { cityName: city.name, list: data.list };
+      });
+
+      const results = await Promise.all(promises);
+
+      // Трансформуємо масив результатів в об'єкт вигляду: { "Київ": [...], "Львів": [...] }
+      const forecastObject = results.reduce((acc, current) => {
+        acc[current.cityName] = current.list;
+        return acc;
+      }, {});
+
+      setSelectedForecast(forecastObject);
       setShowSelectedForecast(true);
     } catch (err) {
-      console.error(err);
+      console.error("Помилка завантаження спільних прогнозів:", err);
+    } finally {
+      setLoadingForecast(false);
     }
   };
 
   if (loading) return <Preloader />;
 
   if (favorites.length === 0) {
-    return <p className="empty-msg">Список обраних міст порожній.</p>;
+    return (
+      <p className="empty-msg">
+        Список обраних міст порожній.
+      </p>
+    );
   }
 
   return (
     <div className="favorites-section">
-      {/* Кнопка прогнозу над списком */}
       <div className="favorites-controls">
         <button
           type="button"
           className="forecast-toggle-btn"
-          onClick={handleFetchForecast}
+          onClick={handleFetchAllForecasts}
         >
-          {showSelectedForecast
-            ? "Сховати прогноз"
-            : "Прогноз на 5 днів для " + favorites[0].name}
+          {showSelectedForecast ? "Сховати прогноз" : "Прогноз на 5 днів"}
         </button>
       </div>
 
-      {/* Відображення прогнозу в гумовому та анімованому стилі сайту */}
-      {showSelectedForecast && selectedForecast && (
+      {loadingForecast && <Preloader />}
+
+      {/* ДИНАМІЧНИЙ МАКЕТ З КЕРУВАННЯМ СІТКОЮ ТА РЯДКАМИ */}
+      {!loadingForecast && (
         <div
-          className="favorites-forecast-wrapper"
-          style={{ marginBottom: "30px" }}
+          className={
+            showSelectedForecast ? "favorites-rows-container" : "weather-grid"
+          }
         >
-          <ForecastDisplay forecast={selectedForecast} />
+          {favoritesWeather.map((cityData) => {
+            const hasForecast =
+              showSelectedForecast && selectedForecast[cityData.name];
+
+            return (
+              <div
+                key={cityData.id}
+                className={hasForecast ? "fav-city-row" : "fav-grid-item"}
+              >
+                {/* Поточна погода */}
+                <div className={hasForecast ? "fav-layout-main-card" : ""}>
+                  <WeatherCard weather={cityData} />
+                </div>
+
+                {/* Прогноз з'являється ПОРУЧ лише якщо активовано кнопку */}
+                {hasForecast && (
+                  <div className="fav-layout-forecast-panel">
+                    <ForecastDisplay
+                      forecast={selectedForecast[cityData.name]}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
-
-      {/* Грід з картками обраних міст (копіює структуру сітки столиць) */}
-      <div className="weather-grid">
-        {favoritesWeather.map((cityData) => (
-          <WeatherCard key={cityData.id} weather={cityData} />
-        ))}
-      </div>
     </div>
   );
 }
 
 export default FavoriteWeatherList;
+
+
+
+

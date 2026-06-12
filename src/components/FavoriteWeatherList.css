@@ -1,0 +1,107 @@
+.empty-msg {
+    color: #370947;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.favorites-controls {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.forecast-toggle-btn {
+    padding: 12px 24px;
+    border-radius: 15px;
+    border: none;
+    background-color: #7b4376;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 15px #76257072;    
+}
+
+.favorites-forecasts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 40px;        
+}
+
+.single-city-forecast-block {
+    /* width: 100%; */
+    max-width: 960px;
+    margin: 0 auto;    
+}
+
+
+.favorites-rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Окремий рядок для кожного міста (Поточна + Прогноз) */
+.fav-city-row {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: stretch;
+    /* Робить поточну погоду та прогноз однакової висоти */
+    width: 100%;
+    animation: slideDownEffect 0.4s ease-out forwards;
+}
+
+/* Ліва колонка: звужена поточна погода (точно як на головній сторінці) */
+.fav-layout-main-card {
+    /* flex: 0 1 300px; */
+    flex-shrink: 1;
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+}
+
+/* Права колонка: розширений прогноз (точно як на головній сторінці) */
+.fav-layout-forecast-panel {
+    /* flex: 1 1 500px; */
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 500px;
+    min-width: 260px;
+    display: flex;
+}
+
+/* Адаптація під мобільні пристрої (екрани менше 880px) */
+@media (max-width: 880px) {
+    .fav-city-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .fav-layout-main-card,
+    .fav-layout-forecast-panel {
+        width: 100%;
+        max-width: 360px;
+        /* На смартфонах блоки знову стають затишного мобільного розміру */
+    }
+}
+
+/* Плавний ефект розгортання прогнозу при натисканні */
+@keyframes slideDownEffect {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

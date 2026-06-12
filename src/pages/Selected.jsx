@@ -6,18 +6,16 @@ function Selected() {
   const navigate = useNavigate();
 
   return (
-    <div className="container">
-      <header className="app-header">
+    <>    
         
-        <h1 className="logo-text" style={{ marginLeft: "20px" }}>
+        <h1 className="selected-title">
           Обрані міста
-        </h1>
-      </header>
+        </h1>      
 
       {/* Наш новий список гріда */}
       <FavoriteWeatherList />
       
-    </div>
+    </>
   );
 }
 

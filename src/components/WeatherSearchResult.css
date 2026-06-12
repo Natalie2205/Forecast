@@ -10,8 +10,7 @@
     box-sizing: border-box;
 }
 
-.layout-main-card {
-    /* flex: 0 0 300px;     */
+.layout-main-card {    
     width: 100%;
     max-width: 300px;
     display: flex;
