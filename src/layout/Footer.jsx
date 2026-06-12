@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="app-footer">
       <div className="container">
-        <div className="flex-container">
+        <div className="flex-container footer-flex">
           <div className="app-logo">
             <Link to="/" className="logo-link">
               <img src={logoImg} alt="Лого" className="logo-img" />

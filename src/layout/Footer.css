@@ -6,7 +6,7 @@
 }
 
 @media (max-width:768px) {
-    .flex-container {
+    .footer-flex{
         flex-direction: column;
         gap: 5px;
     }
